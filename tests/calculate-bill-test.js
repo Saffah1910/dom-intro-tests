@@ -20,7 +20,7 @@
         assert.equal("warning", calculateBills.warningLevel() )
 
     });
-    it("if the total is R36.25 it should return warning",function(){
+    it("if the total is R36.25 it should return critcal",function(){
         var calculateBills = calculateBill("call,call,sms,call,sms,call,call,sms,call,sms,call,call,sms,call,sms,call,sms,call,sms,")
         assert.equal(36.25, calculateBills.calcBill() )
         assert.equal("critical", calculateBills.criticalLevel() )

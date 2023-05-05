@@ -1,8 +1,11 @@
 function BillWithSettings() {
     var theCallCost = 0;
     var theSmsCost = 0;
-    var theWarningLevel = 0 ;
+    var theWarningLevel = 0;
     var theCriicalLevel = 0;
+
+    var callCostTotal = 0;
+    var smsCostTotal = 0;
 
     function setCallCost(callCost) {
         theCallCost = callCost
@@ -18,31 +21,60 @@ function BillWithSettings() {
         return theSmsCost;
     }
 
-    function setWarningLevel(warningLevel){
+    function setWarningLevel(warningLevel) {
         theWarningLevel = warningLevel
-        
+
     }
-    function getWarningLevel(){
+    function getWarningLevel() {
         return theWarningLevel
     }
-    function setCriicalLevel(criticalLevel){
+    function setCriticalLevel(criticalLevel) {
         theCriicalLevel = criticalLevel
     }
-    function getCriicalLevel(){
+    function getCriticalLevel() {
         return theCriicalLevel
     }
-    function makeCall(){
+    function makeCall() {
+        if(!hasReachedCriticalLevel()){
+        callCostTotal += theCallCost
+        }
+    }
+    function sendSms(){
+
+        if(!hasReachedCriticalLevel()){
+            smsCostTotal += theSmsCost;
+        }
+     
+    }
+    function getTotalCost() {
+        return callCostTotal + smsCostTotal;
+    }
+    function getTotalCallCost() {
+        return callCostTotal; 
+    }
+    function getTotalSmsCost() {
+        return smsCostTotal;
+    } 
+    function hasReachedCriticalLevel(){
+        return getTotalCallCost() >= getCriticalLevel()
+    }
+
+
+
+
+
+
+
+    function totalClassName(){
+        if(hasReachedCriticalLevel()){
+            return "critical"
+        }
+
+        if(getTotalCallCost() >= getWarningLevel()){
+            return "warning"
+        }
 
     }
-    function getTotalCost(){
-        return 6.75
-    }
-    function getTotalCallCost(){
-        return 6.75
-    }
-function getTotalSmsCost(){
-
-}
 
     return {
         getCallCost,
@@ -51,11 +83,14 @@ function getTotalSmsCost(){
         getSmsCost,
         setWarningLevel,
         getWarningLevel,
-        setCriicalLevel,
-        getCriicalLevel,
+        setCriticalLevel,
+        getCriticalLevel,
         makeCall,
+        sendSms,
         getTotalCost,
         getTotalCallCost,
-        getTotalSmsCost
+        getTotalSmsCost,
+        totalClassName,
+        hasReachedCriticalLevel
     }
-}
+}  
