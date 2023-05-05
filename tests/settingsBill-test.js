@@ -1,6 +1,8 @@
 
 
 describe("The Bill with settings function", function () {
+
+    describe("set values", function () {
     it("should be able to set call cost", function () {
         let settingsBill = BillWithSettings();
         settingsBill.setCriticalLevel(10);
@@ -214,4 +216,5 @@ describe("warning and critical level", function () {
     });
 
 
+});
 });
