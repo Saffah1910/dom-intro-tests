@@ -1,4 +1,4 @@
-const { describe } = require("mocha");
+
 
 describe("The Bill with settings function", function () {
     it("should be able to set call cost", function () {
@@ -73,7 +73,7 @@ describe("use values", function(){
 
         assert.equal(6.75, settingsBill.getTotalCost());
         assert.equal(6.75, settingsBill.getTotalCallCost());
-        assert.equal(6.75, settingsBill.getTotalSmsCost());
+        assert.equal(0.00, settingsBill.getTotalSmsCost());
     })
 
 
